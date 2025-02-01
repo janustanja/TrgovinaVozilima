@@ -1,6 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
-using TrgovinaVozilima.Data;
+using Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

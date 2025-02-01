@@ -1,4 +1,6 @@
-﻿namespace Backend.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Backend.Models
 {
     public class VrstaVozila : Entitet
     {

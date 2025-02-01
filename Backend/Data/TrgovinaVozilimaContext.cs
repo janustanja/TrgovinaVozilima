@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 
-namespace TrgovinaVozilima.Data
+namespace Backend.Data
 {
     public class TrgovinaVozilimaContext : DbContext
     {
