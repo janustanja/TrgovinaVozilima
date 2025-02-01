@@ -11,6 +11,10 @@ namespace Backend.Data
 
         }
         public DbSet<VrstaVozila> VrsteVozila { get; set; }
+        public DbSet <Dobavljac> Dobavljaci { get; set; }
+        public DbSet<Kupac> Kupci { get; set; }
+        public DbSet<Vozilo> Vozila { get; set; }
+
 
 
     }
