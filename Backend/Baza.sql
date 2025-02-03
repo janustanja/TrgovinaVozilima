@@ -1,14 +1,14 @@
-﻿use master;
-go
-
-drop database if exists trgovina;
-go
-
-create database trgovina collate Croatian_CI_AS;
-go
-
-use trgovina;
-go
+﻿SELECT name, collation_name FROM sys.databases;
+GO
+ALTER DATABASE db_ab267c_trgovinavozilima SET SINGLE_USER WITH
+ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE db_ab267c_trgovinavozilima COLLATE Croatian_CI_AS;
+GO
+ALTER DATABASE db_ab267c_trgovinavozilima SET MULTI_USER;
+GO
+SELECT name, collation_name FROM sys.databases;
+GO
 
 create table vrstevozila (
 sifra int not null primary key identity(1,1),
