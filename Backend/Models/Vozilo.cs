@@ -3,22 +3,27 @@ namespace Backend.Models
 {
     public class Vozilo : Entitet
     {
-        public int DobavljacSifra { get; set; }
-        public int KupacSifra { get; set; }
+        //[Column("VrstaVozilaSifra")]
+        
+        public VrstaVozila VrstaVozila { get; set; }
+        [ForeignKey("VrstaVozilaSifra")]
         public int VrstaVozilaSifra { get; set; }
 
-
-
-
-       [Column("VrstaVozilaSifra")]
-        public VrstaVozila VrstaVozila { get; set; }
-        [Column("DobavljacSifra")]
+        //[Column("DobavljacSifra")]
+        
         public Dobavljac Dobavljac { get; set; }
+        [ForeignKey("DobavljacSifra")]
+        public int DobavljacSifra { get; set; }
+
         public string Marka { get; set; }
         public string GodProizvodnje { get; set; }
         public int PrijedeniKm { get; set; }
         public decimal Cijena { get; set; }
-        [Column("KupacSifra")]
+
+        //[Column("KupacSifra")]
+        
         public Kupac Kupac { get; set; }
+        [ForeignKey("KupacSifra")]
+        public int KupacSifra { get; set; }
     }
 }
