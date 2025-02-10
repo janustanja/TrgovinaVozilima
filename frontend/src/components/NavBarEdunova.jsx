@@ -18,7 +18,11 @@ export default function NavBarEdunova(){
         <>
         <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-                    <Navbar.Brand href="#home">Trgovina vozilima</Navbar.Brand>
+                    <Navbar.Brand 
+                    className='ruka'
+                    onClick={()=>navigate(RouteNames.HOME)}
+                    
+                    >Trgovina vozilima</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
