@@ -32,6 +32,7 @@ export default function NavBarEdunova(){
                         >Dobavljači</NavDropdown.Item>
                         
                         </NavDropdown>
+                        <Nav.Link href='https://janustanja-001-site1.ktempurl.com/swagger' target='_blank'>Swagger</Nav.Link>
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

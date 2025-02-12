@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import DobavljacService from "../../services/DobavljacService"
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { RouteNames } from "../../constants";
 
 
 export default function DobavljaciPregled(){
@@ -19,6 +21,10 @@ export default function DobavljaciPregled(){
 
     return (
         <>
+        <Link
+        to={RouteNames.DOBAVLJAC_NOVI}
+        className="btn btn-success siroko"
+        >Dodaj novog dobavljača</Link>
         <Table striper bordered hover responsive>
             <thead>
                 <tr>

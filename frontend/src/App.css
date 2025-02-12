@@ -1,3 +1,19 @@
 .ruka{
     cursor: pointer;
 }
+
+.sredina{
+    text-align: center;
+}
+
+.desno{
+    text-align: right;
+}
+
+.lijevo{
+    text-align: left;
+}
+
+.siroko{
+    width: 100%;
+}
