@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import DobavljacService from "../../services/DobavljacService"
-import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Table } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 
 
 export default function DobavljaciPregled(){
 
     const [dobavljaci, setDobavljaci]= useState();
+    const navigate=useNavigate();
 
 
     async function dohvatiDobavljace(){
@@ -31,6 +32,7 @@ export default function DobavljaciPregled(){
                     <th>Naziv</th>
                     <th>Adresa</th>
                     <th>Iban</th>
+                    <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +46,12 @@ export default function DobavljaciPregled(){
                         </td>
                         <td>
                             {dobavljac.iban}
+                        </td>
+                        <td>
+                            <Button
+                                onClick={()=>navigate(`/dobavljaci/&{dobavljac.sifra`)}
+                                >Promjena
+                            </Button>
                         </td>
                     </tr>
                 ))}

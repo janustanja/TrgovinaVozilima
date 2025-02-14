@@ -17,7 +17,21 @@ async function dodaj(dobavljac){
     .catch(()=>{return{greska: true, poruka: 'Problem kod dodavanja'}})
 }
 
+
+
+async function getBySifra(sifra){
+    return await HttpService.get('/Dobavljac' + sifra)
+    .then((odgovor)=>{
+        //console.table(odgovor.data)
+        return odgovor.data;
+    })
+    .catch((e)=>{})
+}
+
+
 export default {
     get,
+    getBySifra,
     dodaj
+    
 }
