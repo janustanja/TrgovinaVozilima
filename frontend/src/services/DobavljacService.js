@@ -20,7 +20,7 @@ async function dodaj(dobavljac){
 
 
 async function getBySifra(sifra){
-    return await HttpService.get('/Dobavljac' + sifra)
+    return await HttpService.get('/Dobavljac/' + sifra)
     .then((odgovor)=>{
         //console.table(odgovor.data)
         return odgovor.data;

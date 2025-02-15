@@ -49,7 +49,7 @@ export default function DobavljaciPregled(){
                         </td>
                         <td>
                             <Button
-                                onClick={()=>navigate(`/dobavljaci/&{dobavljac.sifra`)}
+                                onClick={()=>navigate(`/dobavljaci/${dobavljac.sifra}`)}
                                 >Promjena
                             </Button>
                         </td>
