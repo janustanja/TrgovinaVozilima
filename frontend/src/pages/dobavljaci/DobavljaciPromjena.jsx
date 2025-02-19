@@ -22,8 +22,8 @@ export default function DobavljaciPromjena(){
         dohvatiDobavljaca();
     },[])
 
-    async function dodaj(dobavljac){
-        const odgovor=DobavljacService.dodaj(dobavljac);
+    async function promjena(dobavljac){
+        const odgovor= await DobavljacService.promjena(routeParams.sifra, dobavljac);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
@@ -40,7 +40,7 @@ export default function DobavljaciPromjena(){
 
         let podaci = new FormData(e.target);
 
-        dodaj(
+        promjena(
             {
                 naziv: podaci.get('naziv'),
                 adresa: podaci.get('adresa'),
@@ -54,7 +54,7 @@ export default function DobavljaciPromjena(){
 
     return(
         <>
-        Dodavanje dobavljača
+        Promjena dobavljača
         <Form onSubmit={odradiSubmit}>
 
             <Form.Group controlId="naziv">
@@ -87,7 +87,7 @@ export default function DobavljaciPromjena(){
             </Col>
             <Col xs={6} sm={6} md={9} lg={10} xxl={6}>
                 <Button variant ="success" type="submit" className="siroko">
-                    Dodaj dobavljača
+                    Promjeni dobavljača
                 </Button>
             </Col>
         </Row>

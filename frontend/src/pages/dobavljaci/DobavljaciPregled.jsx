@@ -19,6 +19,23 @@ export default function DobavljaciPregled(){
         dohvatiDobavljace();
     }, [])
 
+    function obrisi(sifra){
+        if(!confirm(`Sigurno obrisati`)){
+            return;
+        }
+        brisanjeDobavljaca(sifra);
+    }
+
+    async function brisanjeDobavljaca(sifra){
+        const odgovor= await DobavljacService.obrisi(sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka);
+            return;
+        }
+        dohvatiDobavljace();
+    }
+
+
 
     return (
         <>
@@ -52,6 +69,13 @@ export default function DobavljaciPregled(){
                                 onClick={()=>navigate(`/dobavljaci/${dobavljac.sifra}`)}
                                 >Promjena
                             </Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                                variant= "danger"
+                                onClick={()=>obrisi(dobavljac.sifra)}
+                                >Obriši
+                            </Button>
+
                         </td>
                     </tr>
                 ))}
