@@ -27,9 +27,14 @@ export default function NavBarEdunova(){
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <NavDropdown title="Programi" id="basic-nav-dropdown">
+
                         <NavDropdown.Item
                         onClick={()=>navigate(RouteNames.DOBAVLJAC_PREGLED)}
                         >Dobavljači</NavDropdown.Item>
+
+                        <NavDropdown.Item
+                        onClick={()=>navigate(RouteNames.KUPAC_PREGLED)}
+                        >Kupci</NavDropdown.Item>
                         
                         </NavDropdown>
                         <Nav.Link href='https://janustanja-001-site1.ktempurl.com/swagger' target='_blank'>Swagger</Nav.Link>

@@ -4,7 +4,7 @@ import { RouteNames } from "../../constants";
 import DobavljacService from "../../services/DobavljacService";
 
 
-export default function DobavljaciDodaj(){
+export default function KupciDodaj(){
 
     const navigate= useNavigate();
 

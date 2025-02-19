@@ -1,20 +1,34 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link, Route, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import DobavljacService from "../../services/DobavljacService";
+import { useEffect, useState } from "react";
 
 
-export default function DobavljaciDodaj(){
+export default function KupciPromjena(){
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+    const[dobavljac, setDobavljac]=useState({});
+    const routeParams= useParams();
 
-    async function dodaj(dobavljac){
-        const odgovor= await DobavljacService.dodaj(dobavljac);
+    async function dohvatiDobavljaca() 
+    {
+        const odgovor = await DobavljacService.getBySifra(routeParams.sifra)
+        setDobavljac(odgovor)
+        
+    }
+
+    useEffect(()=>{
+        dohvatiDobavljaca();
+    },[])
+
+    async function promjena(dobavljac){
+        const odgovor= await DobavljacService.promjena(routeParams.sifra, dobavljac);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
         }
-        Navigate(RouteNames.DOBAVLJAC_PREGLED)
+        navigate(RouteNames.DOBAVLJAC_PREGLED)
 
     }
 
@@ -26,7 +40,7 @@ export default function DobavljaciDodaj(){
 
         let podaci = new FormData(e.target);
 
-        dodaj(
+        promjena(
             {
                 naziv: podaci.get('naziv'),
                 adresa: podaci.get('adresa'),
@@ -40,43 +54,46 @@ export default function DobavljaciDodaj(){
 
     return(
         <>
-        Dodavanje dobavljača
+        Promjena dobavljača
         <Form onSubmit={odradiSubmit}>
 
             <Form.Group controlId="naziv">
                 <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required />
+                <Form.Control type="text" name="naziv" required 
+                defaultValue={dobavljac.naziv}/>
             </Form.Group>
 
 
             <Form.Group controlId="adresa">
                 <Form.Label>Adresa</Form.Label>
-                <Form.Control type="text" name="adresa" required />
+                <Form.Control type="text" name="adresa" required
+                 defaultValue={dobavljac.adresa}/>
             </Form.Group>
 
             <Form.Group controlId="iban">
                 <Form.Label>Iban</Form.Label>
-                <Form.Control type="text" name="iban" required />
+                <Form.Control type="text" name="iban" required
+                defaultValue={dobavljac.iban} />
             </Form.Group>
 
         <hr/>
 
          <Row>
-            <Col xs={6} sm={6} md={3} lg={2} xl={6} xxl={6}>
+            <Col xs={6} sm={6} md={3} lg={2} xxl={6}>
             <Link
             to={RouteNames.DOBAVLJAC_PREGLED}
             className="btn btn-danger siroko"
             >Odustani</Link>    
             </Col>
-            <Col xs={6} sm={6} md={9} lg={10} xl={6} xxl={6}>
+            <Col xs={6} sm={6} md={9} lg={10} xxl={6}>
                 <Button variant ="success" type="submit" className="siroko">
-                    Dodaj dobavljača
+                    Promjeni dobavljača
                 </Button>
             </Col>
         </Row>
         
 
-     </Form>
+        </Form>
 
 </>
 

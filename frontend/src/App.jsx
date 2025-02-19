@@ -8,6 +8,9 @@ import { Route, Routes } from 'react-router-dom'
 import DobavljaciPregled from './pages/dobavljaci/DobavljaciPregled'
 import DobavljaciDodaj from './pages/dobavljaci/DobavljaciDodaj'
 import DobavljaciPromjena from './pages/dobavljaci/DobavljaciPromjena'
+import KupciPregled from './pages/kupci/KupciPregled'
+import KupciDodaj from './pages/kupci/KupciDodaj'
+import KupciPromjena from './pages/kupci/KupciPromjena'
 
 function App() {
   return (
@@ -20,6 +23,10 @@ function App() {
           <Route path={RouteNames.DOBAVLJAC_PREGLED} element ={<DobavljaciPregled />} />
           <Route path={RouteNames.DOBAVLJAC_NOVI} element={<DobavljaciDodaj/>} />
           <Route path={RouteNames.DOBAVLJAC_PROMJENA} element={<DobavljaciPromjena />} />
+
+          <Route path={RouteNames.KUPAC_PREGLED} element ={< KupciPregled />} />
+          <Route path={RouteNames.KUPAC_NOVI} element={<KupciDodaj/>} />
+          <Route path={RouteNames.KUPAC_PROMJENA} element={<KupciPromjena />} />
         </Routes>
 
 
