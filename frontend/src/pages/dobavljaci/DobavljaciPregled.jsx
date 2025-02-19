@@ -7,8 +7,9 @@ import { RouteNames } from "../../constants";
 
 export default function DobavljaciPregled(){
 
-    const [dobavljaci, setDobavljaci]= useState();
     const navigate=useNavigate();
+    const [dobavljaci, setDobavljaci]= useState();
+    
 
 
     async function dohvatiDobavljace(){
