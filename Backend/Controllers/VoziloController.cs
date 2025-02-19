@@ -82,13 +82,13 @@ namespace Backend.Controllers
                     return NotFound();
                 }
 
-                s.VrstaVozilaSifra = vozilo.VrstaVozilaSifra;
-                s.DobavljacSifra = vozilo.DobavljacSifra;
+                s.VrstaVozila = vozilo.VrstaVozila;
+                s.Dobavljac= vozilo.Dobavljac;
                 s.Marka = vozilo.Marka;
                 s.GodProizvodnje = vozilo.GodProizvodnje;
                 s.PrijedeniKm = vozilo.PrijedeniKm;
                 s.Cijena = vozilo.Cijena;
-                s.KupacSifra = vozilo.KupacSifra;
+                s.Kupac = vozilo.Kupac;
 
 
                 _context.Vozila.Update(s);

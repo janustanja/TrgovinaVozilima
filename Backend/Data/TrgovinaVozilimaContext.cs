@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
+using System.Text.RegularExpressions;
 
 namespace Backend.Data
 {
@@ -14,6 +15,13 @@ namespace Backend.Data
         public DbSet <Dobavljac> Dobavljaci { get; set; }
         public DbSet<Kupac> Kupci { get; set; }
         public DbSet<Vozilo> Vozila { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Vozilo>().HasOne(g => g.VrstaVozila);
+            modelBuilder.Entity<Vozilo>().HasOne(g => g.Kupac);
+            modelBuilder.Entity<Vozilo>().HasOne(g => g.Dobavljac);
+        }
 
 
 
