@@ -1,20 +1,20 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
-import DobavljacService from "../../services/DobavljacService";
+import KupacService from "../../services/KupacService";
 
 
 export default function KupciDodaj(){
 
     const navigate= useNavigate();
 
-    async function dodaj(dobavljac){
-        const odgovor= await DobavljacService.dodaj(dobavljac);
+    async function dodaj(kupac){
+        const odgovor= await KupacService.dodaj(kupac);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
         }
-        Navigate(RouteNames.DOBAVLJAC_PREGLED)
+        Navigate(RouteNames.KUPAC_PREGLED)
 
     }
 
@@ -28,7 +28,8 @@ export default function KupciDodaj(){
 
         dodaj(
             {
-                naziv: podaci.get('naziv'),
+                ime: podaci.get('ime'),
+                prezime: podaci.get('prezime'),
                 adresa: podaci.get('adresa'),
                 iban: podaci.get('iban')
             }
@@ -40,12 +41,17 @@ export default function KupciDodaj(){
 
     return(
         <>
-        Dodavanje dobavljača
+        Dodavanje kupca
         <Form onSubmit={odradiSubmit}>
 
-            <Form.Group controlId="naziv">
-                <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required />
+            <Form.Group controlId="ime">
+                <Form.Label>Ime</Form.Label>
+                <Form.Control type="text" name="ime" required />
+            </Form.Group>
+
+            <Form.Group controlId="prezime">
+                <Form.Label>Prezime</Form.Label>
+                <Form.Control type="text" name="prezime" required />
             </Form.Group>
 
 
@@ -64,13 +70,13 @@ export default function KupciDodaj(){
          <Row>
             <Col xs={6} sm={6} md={3} lg={2} xl={6} xxl={6}>
             <Link
-            to={RouteNames.DOBAVLJAC_PREGLED}
+            to={RouteNames.KUPAC_PREGLED}
             className="btn btn-danger siroko"
             >Odustani</Link>    
             </Col>
             <Col xs={6} sm={6} md={9} lg={10} xl={6} xxl={6}>
                 <Button variant ="success" type="submit" className="siroko">
-                    Dodaj dobavljača
+                    Dodaj kupca
                 </Button>
             </Col>
         </Row>

@@ -1,34 +1,34 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
-import DobavljacService from "../../services/DobavljacService";
+import KupacService from "../../services/KupacService";
 import { useEffect, useState } from "react";
 
 
 export default function KupciPromjena(){
 
     const navigate = useNavigate();
-    const[dobavljac, setDobavljac]=useState({});
+    const[kupac, setKupac]=useState({});
     const routeParams= useParams();
 
-    async function dohvatiDobavljaca() 
+    async function dohvatiKupca() 
     {
-        const odgovor = await DobavljacService.getBySifra(routeParams.sifra)
-        setDobavljac(odgovor)
+        const odgovor = await KupacService.getBySifra(routeParams.sifra)
+        setKupac(odgovor)
         
     }
 
     useEffect(()=>{
-        dohvatiDobavljaca();
+        dohvatiKupca();
     },[])
 
-    async function promjena(dobavljac){
-        const odgovor= await DobavljacService.promjena(routeParams.sifra, dobavljac);
+    async function promjena(kupac){
+        const odgovor= await KupacService.promjena(routeParams.sifra, kupac);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
         }
-        navigate(RouteNames.DOBAVLJAC_PREGLED)
+        navigate(RouteNames.KUPAC_PREGLED)
 
     }
 
@@ -42,7 +42,8 @@ export default function KupciPromjena(){
 
         promjena(
             {
-                naziv: podaci.get('naziv'),
+                ime: podaci.get('ime'),
+                prezime: podaci.get('prezime'),
                 adresa: podaci.get('adresa'),
                 iban: podaci.get('iban')
             }
@@ -54,26 +55,32 @@ export default function KupciPromjena(){
 
     return(
         <>
-        Promjena dobavljača
+        Promjena kupca
         <Form onSubmit={odradiSubmit}>
 
-            <Form.Group controlId="naziv">
-                <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required 
-                defaultValue={dobavljac.naziv}/>
+            <Form.Group controlId="ime">
+                <Form.Label>Ime</Form.Label>
+                <Form.Control type="text" name="ime" required 
+                defaultValue={kupac.ime}/>
+            </Form.Group>
+
+            <Form.Group controlId="prezime">
+                <Form.Label>Prezime</Form.Label>
+                <Form.Control type="text" name="prezime" required 
+                defaultValue={kupac.prezime}/>
             </Form.Group>
 
 
             <Form.Group controlId="adresa">
                 <Form.Label>Adresa</Form.Label>
                 <Form.Control type="text" name="adresa" required
-                 defaultValue={dobavljac.adresa}/>
+                 defaultValue={kupac.adresa}/>
             </Form.Group>
 
             <Form.Group controlId="iban">
                 <Form.Label>Iban</Form.Label>
                 <Form.Control type="text" name="iban" required
-                defaultValue={dobavljac.iban} />
+                defaultValue={kupac.iban} />
             </Form.Group>
 
         <hr/>
@@ -81,13 +88,13 @@ export default function KupciPromjena(){
          <Row>
             <Col xs={6} sm={6} md={3} lg={2} xxl={6}>
             <Link
-            to={RouteNames.DOBAVLJAC_PREGLED}
+            to={RouteNames.KUPAC_PREGLED}
             className="btn btn-danger siroko"
             >Odustani</Link>    
             </Col>
             <Col xs={6} sm={6} md={9} lg={10} xxl={6}>
                 <Button variant ="success" type="submit" className="siroko">
-                    Promjeni dobavljača
+                    Promjeni kupca
                 </Button>
             </Col>
         </Row>

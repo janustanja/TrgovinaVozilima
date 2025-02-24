@@ -35,6 +35,11 @@ export default function NavBarEdunova(){
                         <NavDropdown.Item
                         onClick={()=>navigate(RouteNames.KUPAC_PREGLED)}
                         >Kupci</NavDropdown.Item>
+
+                        <NavDropdown.Item
+                        onClick={()=>navigate(RouteNames.VRSTAVOZILA_PREGLED)}
+                        >Vrste vozila</NavDropdown.Item>
+
                         
                         </NavDropdown>
                         <Nav.Link href='https://janustanja-001-site1.ktempurl.com/swagger' target='_blank'>Swagger</Nav.Link>

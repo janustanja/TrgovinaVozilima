@@ -7,6 +7,11 @@ export const RouteNames={
 
     KUPAC_PREGLED:  '/kupci',
     KUPAC_NOVI: '/kupci/dodaj',
-    KUPAC_PROMJENA: '/kupci/:sifra'
+    KUPAC_PROMJENA: '/kupci/:sifra',
+
+    VRSTAVOZILA_PREGLED:  '/vrsteVozila',
+    VRSTAVOZILA_NOVI: '/vrsteVozila/dodaj',
+    VRSTAVOZILA_PROMJENA: '/vrsteVozila/:sifra'
+
 }
 export const BACKEND_URL='https://janustanja-001-site1.ktempurl.com/api/v1';

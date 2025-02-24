@@ -1,39 +1,39 @@
 import { useEffect, useState } from "react"
-import KupacService from "../../services/KupacService"
+import VrstaVozilaService from "../../services/VrstaVozilaService"
 import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 
 
-export default function KupciPregled(){
+export default function VrsteVozilaPregled(){
 
     const navigate=useNavigate();
-    const [kupci, setKupci]= useState();
+    const [vrsteVozila, setVrsteVozila]= useState();
     
 
 
-    async function dohvatiKupce(){
-        const odgovor = await KupacService.get()
-        setKupci(odgovor)
+    async function dohvatiVrsteVozila(){
+        const odgovor = await VrstaVozilaService.get()
+        setVrsteVozila(odgovor)
     }
     useEffect(()=>{
-        dohvatiKupce();
+        dohvatiVrsteVozila();
     }, [])
 
     function obrisi(sifra){
         if(!confirm(`Sigurno obrisati`)){
             return;
         }
-        brisanjeKupca(sifra);
+        brisanjeVrsteVozila(sifra);
     }
 
-    async function brisanjeKupca(sifra){
-        const odgovor= await KupacService.obrisi(sifra);
+    async function brisanjeVrsteVozila(sifra){
+        const odgovor= await VrstaVozilaService.obrisi(sifra);
         if(odgovor.greska){
             alert(odgovor.poruka);
             return;
         }
-        dohvatiKupce();
+        dohvatiVrsteVozila();
     }
 
 
@@ -41,43 +41,32 @@ export default function KupciPregled(){
     return (
         <>
         <Link
-        to={RouteNames.KUPAC_NOVI}
+        to={RouteNames.VRSTAVOZILA_NOVI}
         className="btn btn-success siroko"
-        >Dodaj novog kupca</Link>
+        >Dodaj novu vrstu vozila</Link>
         <Table striper bordered hover responsive>
             <thead>
                 <tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Adresa</th>
-                    <th>Iban</th>
+                    <th>Naziv</th>
                     <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
-                {kupci && kupci.map((kupac, index)=>(
+                {vrsteVozila && vrsteVozila.map((vrstaVozila, index)=>(
                     <tr key={index}>
                         <td>
-                            {kupac.ime}
+                            {vrstaVozila.naziv}
                         </td>
-                        <td>
-                            {kupac.prezime}
-                        </td>
-                        <td>
-                            {kupac.adresa}
-                        </td>
-                        <td>
-                            {kupac.iban}
-                        </td>
+                        
                         <td>
                             <Button
-                                onClick={()=>navigate(`/kupci/${kupac.sifra}`)}
+                                onClick={()=>navigate(`/vrsteVozila/${vrstaVozila.sifra}`)}
                                 >Promjena
                             </Button>
                             &nbsp;&nbsp;&nbsp;
                             <Button
                                 variant= "danger"
-                                onClick={()=>obrisi(kupac.sifra)}
+                                onClick={()=>obrisi(vrstaVozila.sifra)}
                                 >Obriši
                             </Button>
 

@@ -11,6 +11,9 @@ import DobavljaciPromjena from './pages/dobavljaci/DobavljaciPromjena'
 import KupciPregled from './pages/kupci/KupciPregled'
 import KupciDodaj from './pages/kupci/KupciDodaj'
 import KupciPromjena from './pages/kupci/KupciPromjena'
+import VrsteVozilaPregled from './pages/vrsteVozila/VrsteVozilaPregled'
+import VrsteVozilaDodaj from './pages/vrsteVozila/VrsteVozilaDodaj'
+import VrsteVozilaPromjena from './pages/vrsteVozila/VrsteVozilaPromjena'
 
 function App() {
   return (
@@ -27,6 +30,10 @@ function App() {
           <Route path={RouteNames.KUPAC_PREGLED} element ={< KupciPregled />} />
           <Route path={RouteNames.KUPAC_NOVI} element={<KupciDodaj/>} />
           <Route path={RouteNames.KUPAC_PROMJENA} element={<KupciPromjena />} />
+
+          <Route path={RouteNames.VRSTAVOZILA_PREGLED} element ={<VrsteVozilaPregled />} />
+          <Route path={RouteNames.VRSTAVOZILA_NOVI} element={<VrsteVozilaDodaj/>} />
+          <Route path={RouteNames.VRSTAVOZILA_PROMJENA} element={<VrsteVozilaPromjena />} />
         </Routes>
 
 
