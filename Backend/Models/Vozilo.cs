@@ -18,7 +18,7 @@ namespace Backend.Models
         //public int DobavljacSifra { get; set; }
 
         public string Marka { get; set; } = "";
-        public string GodProizvodnje { get; set; } = "";
+        public int GodProizvodnje { get; set; } 
         public int PrijedeniKm { get; set; } 
         public decimal Cijena { get; set; }
 
