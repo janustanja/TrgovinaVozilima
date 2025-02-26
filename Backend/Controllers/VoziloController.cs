@@ -1,6 +1,7 @@
 ﻿using Backend.Data;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -20,7 +21,7 @@ namespace Backend.Controllers
         {
             try
             {
-                return Ok(_context.Vozila);
+                return Ok(_context.Vozila.Include(v=>v.Kupac).Include(v => v.VrstaVozila).Include(v => v.Dobavljac));
 
             }
             catch (Exception e)
