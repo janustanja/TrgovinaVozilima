@@ -14,6 +14,9 @@ import KupciPromjena from './pages/kupci/KupciPromjena'
 import VrsteVozilaPregled from './pages/vrsteVozila/VrsteVozilaPregled'
 import VrsteVozilaDodaj from './pages/vrsteVozila/VrsteVozilaDodaj'
 import VrsteVozilaPromjena from './pages/vrsteVozila/VrsteVozilaPromjena'
+import VozilaPregled from './pages/vozila/VozilaPregled'
+import VozilaDodaj from './pages/vozila/VozilaDodaj'
+import VozilaPromjena from './pages/vozila/VozilaPromjena'
 
 function App() {
   return (
@@ -34,6 +37,11 @@ function App() {
           <Route path={RouteNames.VRSTAVOZILA_PREGLED} element ={<VrsteVozilaPregled />} />
           <Route path={RouteNames.VRSTAVOZILA_NOVI} element={<VrsteVozilaDodaj/>} />
           <Route path={RouteNames.VRSTAVOZILA_PROMJENA} element={<VrsteVozilaPromjena />} />
+
+          <Route path={RouteNames.VOZILO_PREGLED} element ={<VozilaPregled />} />
+          <Route path={RouteNames.VOZILO_NOVI} element={<VozilaDodaj/>} />
+          <Route path={RouteNames.VOZILO_PROMJENA} element={<VozilaPromjena />} />
+
         </Routes>
 
 

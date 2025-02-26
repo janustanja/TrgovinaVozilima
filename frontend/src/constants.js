@@ -11,7 +11,11 @@ export const RouteNames={
 
     VRSTAVOZILA_PREGLED:  '/vrsteVozila',
     VRSTAVOZILA_NOVI: '/vrsteVozila/dodaj',
-    VRSTAVOZILA_PROMJENA: '/vrsteVozila/:sifra'
+    VRSTAVOZILA_PROMJENA: '/vrsteVozila/:sifra',
+
+    VOZILO_PREGLED:  '/vozila',
+    VOZILO_NOVI: '/vozila/dodaj',
+    VOZILO_PROMJENA: '/vozila/:sifra'
 
 }
 export const BACKEND_URL='https://janustanja-001-site1.ktempurl.com/api/v1';
