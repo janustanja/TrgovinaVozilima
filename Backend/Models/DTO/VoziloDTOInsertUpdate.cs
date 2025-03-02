@@ -4,9 +4,9 @@ namespace Backend.Models.DTO
 {
     public record VoziloDTOInsertUpdate(
         [Required(ErrorMessage = "VrstaVozila obavezno")]
-        int VrstaVozila,
+        int VrstaVozilaSifra,
         [Required(ErrorMessage = "Dobavljac obavezno")]
-        int Dobavljac,
+        int DobavljacSifra,
         [Required(ErrorMessage = "Marka obavezno")]
         string Marka,
         [Required(ErrorMessage = "GodProizvodnje obavezno")]
@@ -16,7 +16,7 @@ namespace Backend.Models.DTO
         [Required(ErrorMessage = "Cijena obavezno")]
         decimal Cijena,
         [Required(ErrorMessage = "Kupac obavezno")]
-        int Kupac
+        int KupacSifra
         );
     
 }

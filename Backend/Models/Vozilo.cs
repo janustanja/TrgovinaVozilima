@@ -25,10 +25,10 @@ namespace Backend.Models
         //[Column("KupacSifra")]
 
         [ForeignKey("kupac")]
-        public required Kupac Kupac { get; set; } 
-        
-        //public int KupacSifra { get; set; }
+        public required Kupac Kupac { get; set; }
 
+        //public int KupacSifra { get; set; }
+        public ICollection<Kupac>? Kupci { get; set; }
 
     }
 }
