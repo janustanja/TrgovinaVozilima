@@ -7,5 +7,7 @@ namespace Backend.Models
         public string Prezime { get; set; }
         public string Adresa { get; set; }
         public string Iban { get; set; }
+
+        public ICollection<Vozilo> Vozila { get; }
     }
 }

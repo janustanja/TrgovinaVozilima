@@ -3,6 +3,7 @@ using Backend.Data;
 using Backend.Models;
 using Backend.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -281,6 +282,29 @@ namespace Backend.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("{sifraKupca:int}/vozila")]
+        public ActionResult<List<VoziloDTORead>> GetVozila(int sifraKupca)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                return Ok(_mapper.Map<List<VoziloDTORead>>(_context.Kupci.Include(k=>k.Vozila)
+                  .ThenInclude(v=>v.VrstaVozila)
+                  .Include(k => k.Vozila)
+                  .ThenInclude(v => v.Dobavljac)
+                    .FirstOrDefault(k=> k.Sifra == sifraKupca).Vozila.ToList()));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+
+        }
 
 
     }

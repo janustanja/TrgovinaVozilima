@@ -21,6 +21,8 @@ namespace Backend.Data
             modelBuilder.Entity<Vozilo>().HasOne(g => g.VrstaVozila);
             modelBuilder.Entity<Vozilo>().HasOne(g => g.Kupac);
             modelBuilder.Entity<Vozilo>().HasOne(g => g.Dobavljac);
+
+            modelBuilder.Entity<Kupac>().HasMany(g => g.Vozila).WithOne(g => g.Kupac);
         }
 
 

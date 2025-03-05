@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Backend.Data;
+using Backend.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddCors(o =>
     o.AddPolicy("CorsPolicy", builder =>
     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
+// automapper
+builder.Services.AddAutoMapper(typeof(BackendMappingProfile));
 
 var app = builder.Build();
 

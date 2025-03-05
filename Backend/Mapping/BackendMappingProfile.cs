@@ -21,14 +21,26 @@ namespace Backend.Mapping
             CreateMap<DobavljacDTOInsertUpdate, Dobavljac>();
             CreateMap<Dobavljac, DobavljacDTOInsertUpdate>();
 
-            CreateMap<Vozilo, Vozilo>()
+            CreateMap<Vozilo, VoziloDTORead>()
               .ForCtorParam(
-                  "VrstaVozilaSifra",
-                  opt => opt.MapFrom(src => src.VrstaVozila.Sifra)
+                  "VrstaVozilaNaziv",
+                  opt => opt.MapFrom(src => src.VrstaVozila.Naziv)
+              ).ForCtorParam(
+                  "DobavljacNaziv",
+                  opt => opt.MapFrom(src => src.Dobavljac.Naziv)
+              ).ForCtorParam(
+                  "KupacIme",
+                  opt => opt.MapFrom(src => src.Kupac.Ime + " " + src.Kupac.Prezime)
               );
             CreateMap<Vozilo, VoziloDTOInsertUpdate>().ForMember(
                     dest => dest.VrstaVozilaSifra,
                     opt => opt.MapFrom(src => src.VrstaVozila.Sifra)
+                ).ForMember(
+                    dest => dest.DobavljacSifra,
+                    opt => opt.MapFrom(src => src.Dobavljac.Sifra)
+                ).ForMember(
+                    dest => dest.KupacSifra,
+                    opt => opt.MapFrom(src => src.Kupac.Sifra)
                 );
             CreateMap<VoziloDTOInsertUpdate, Vozilo>();
 

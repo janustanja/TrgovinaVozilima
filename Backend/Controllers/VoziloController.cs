@@ -142,7 +142,10 @@ namespace Backend.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<VoziloDTORead>>(_context.Vozila.Include(g => g.VrstaVozila)));
+                return Ok(_mapper.Map<List<VoziloDTORead>>(_context.Vozila
+                    .Include(g => g.VrstaVozila)
+                    .Include(g => g.Dobavljac)
+                    .Include(g => g.Kupac)));
             }
             catch (Exception ex)
             {
@@ -303,7 +306,7 @@ namespace Backend.Controllers
             }
         }
 
-
+        /*
         [HttpGet]
         [Route("Kupci/{sifraVozila:int}")]
         public ActionResult<List<KupacDTORead>> GetKupci(int sifraVozila)
@@ -328,9 +331,9 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
+        */
 
-
-
+        /*
         [HttpPost]
         [Route("{sifra:int}/dodaj/{kupacSifra:int}")]
         public IActionResult DodajKupca(int sifra, int kupacSifra)
@@ -373,8 +376,8 @@ namespace Backend.Controllers
                        ex.Message);
             }
         }
-
-
+        */
+        /*
         [HttpDelete]
         [Route("{sifra:int}/obrisi/{KupacSifra:int}")]
         public IActionResult ObrisiKupca(int sifra, int kupacSifra)
@@ -417,5 +420,6 @@ namespace Backend.Controllers
 
             }
         }
+        */
     }
     } 

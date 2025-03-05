@@ -28,7 +28,7 @@ namespace Backend.Models
         public required Kupac Kupac { get; set; }
 
         //public int KupacSifra { get; set; }
-        public ICollection<Kupac>? Kupci { get; set; }
+        //public ICollection<Kupac>? Kupci { get;}
 
     }
 }
