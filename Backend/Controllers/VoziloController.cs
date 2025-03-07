@@ -166,7 +166,11 @@ namespace Backend.Controllers
             Vozilo? e;
             try
             {
-                e = _context.Vozila.Include(g => g.VrstaVozila).FirstOrDefault(g => g.Sifra == sifra);
+                e = _context.Vozila
+                    .Include(g => g.VrstaVozila)
+                    .Include(g => g.Dobavljac)
+                    .Include(g => g.Kupac)
+                    .FirstOrDefault(g => g.Sifra == sifra);
                 //e = _context.Vozila.Find(sifra);
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@ namespace Backend.Models.DTO
         [Required(ErrorMessage = "GodProizvodnje obavezno")]
         int GodProizvodnje,
         [Required(ErrorMessage = "PrijedeniKm obavezno")]
-        int PrijedniKm,
+        int PrijedeniKm,
         [Required(ErrorMessage = "Cijena obavezno")]
         decimal Cijena,
         [Required(ErrorMessage = "Kupac obavezno")]
