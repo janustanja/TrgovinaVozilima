@@ -15,7 +15,9 @@ export const RouteNames={
 
     VOZILO_PREGLED:  '/vozila',
     VOZILO_NOVI: '/vozila/dodaj',
-    VOZILO_PROMJENA: '/vozila/:sifra'
+    VOZILO_PROMJENA: '/vozila/:sifra',
+
+    ERA: '/era'
 
 }
 export const BACKEND_URL='https://janustanja-001-site1.ktempurl.com/api/v1';

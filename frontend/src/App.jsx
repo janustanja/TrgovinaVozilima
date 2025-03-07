@@ -42,6 +42,8 @@ function App() {
           <Route path={RouteNames.VOZILO_NOVI} element={<VozilaDodaj/>} />
           <Route path={RouteNames.VOZILO_PROMJENA} element={<VozilaPromjena />} />
 
+          <Route path={RouteNames.ERA} element={<EraDijagram />} /> 
+
         </Routes>
 
 
