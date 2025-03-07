@@ -17,6 +17,7 @@ import VrsteVozilaPromjena from './pages/vrsteVozila/VrsteVozilaPromjena'
 import VozilaPregled from './pages/vozila/VozilaPregled'
 import VozilaDodaj from './pages/vozila/VozilaDodaj'
 import VozilaPromjena from './pages/vozila/VozilaPromjena'
+import EraDijagram from './pages/EraDijagram'
 
 function App() {
   return (

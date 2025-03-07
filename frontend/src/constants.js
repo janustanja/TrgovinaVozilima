@@ -20,5 +20,5 @@ export const RouteNames={
     ERA: '/era'
 
 }
-export const BACKEND_URL='http://janustanja-001-site1.ktempurl.com/api/v1';
+export const BACKEND_URL='https://localhost:7013/api/v1';
 
