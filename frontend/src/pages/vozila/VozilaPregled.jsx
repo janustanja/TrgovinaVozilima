@@ -61,10 +61,10 @@ export default function VozilaPregled(){
                 {vozila && vozila.map((vozilo, index)=>(
                     <tr key={index}>
                         <td>
-                            {vozilo.vrstaVozila}
+                            {vozilo.vrstaVozilaNaziv}
                         </td>
                         <td>
-                            {vozilo.dobavljac}
+                            {vozilo.dobavljacNaziv}
                         </td>
                         <td>
                             {vozilo.marka}
@@ -79,7 +79,7 @@ export default function VozilaPregled(){
                             {vozilo.cijena}
                         </td>
                         <td>
-                            {vozilo.kupac}
+                            {vozilo.kupacIme}
                         </td>
                         <td>
                             <Button
