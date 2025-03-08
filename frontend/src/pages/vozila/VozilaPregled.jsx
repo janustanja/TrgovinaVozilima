@@ -11,7 +11,6 @@ export default function VozilaPregled(){
     const [vozila, setVozila]= useState();
     
 
-
     async function dohvatiVozila(){
         const odgovor = await VoziloService.get()
         setVozila(odgovor)
@@ -19,6 +18,7 @@ export default function VozilaPregled(){
     useEffect(()=>{
         dohvatiVozila();
     }, [])
+        
 
     function obrisi(sifra){
         if(!confirm(`Sigurno obrisati`)){
