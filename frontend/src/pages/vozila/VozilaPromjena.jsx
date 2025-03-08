@@ -49,7 +49,6 @@ export default function VozilaPromjena(){
                 prijedeniKm: podaci.get('prijedeniKm'),
                 cijena: podaci.get('cijena'),
                 kupac: podaci.get('kupac')
-
             }
         );
 
@@ -63,15 +62,15 @@ export default function VozilaPromjena(){
         <Form onSubmit={odradiSubmit}>
 
             <Form.Group controlId="vrstaVozila">
-                <Form.Label>Vrstavozila</Form.Label>
+                <Form.Label>Vrsta vozila</Form.Label>
                 <Form.Control type="text" name="vrstaVozila" required
-                defaultValue={vozilo.vrstaVozila} />
+                defaultValue={vozilo.vrstaVozilaSifra} />
             </Form.Group>
 
             <Form.Group controlId="dobavljac">
-                <Form.Label>Dobavljac</Form.Label>
+                <Form.Label>Dobavljač</Form.Label>
                 <Form.Control type="text" name="dobavljac" required 
-                defaultValue={vozilo.dobavljac} />
+                defaultValue={vozilo.dobavljacSifra} />
             </Form.Group>
 
             <Form.Group controlId="marka">
@@ -81,14 +80,14 @@ export default function VozilaPromjena(){
             </Form.Group>
 
             <Form.Group controlId="godProizvodnje">
-                <Form.Label>GodProizvodnje</Form.Label>
+                <Form.Label>Godina proizvodnje</Form.Label>
                 <Form.Control type="int" name="godProizvodnje" required
                 defaultValue={vozilo.godProizvodnje} />
             </Form.Group>
 
             <Form.Group controlId="prijedeniKm">
-                <Form.Label>PrijedeniKm</Form.Label>
-                <Form.Control type="int" name="prijedeniKM" required
+                <Form.Label>Prijeđeni kilometri</Form.Label>
+                <Form.Control type="int" name="prijedeniKm" required
                 defaultValue={vozilo.prijedeniKm} />
             </Form.Group>
 
@@ -102,7 +101,7 @@ export default function VozilaPromjena(){
             <Form.Group controlId="kupac">
                 <Form.Label>Kupac</Form.Label>
                 <Form.Control type="text" name="kupac" required
-                defaultValue={vozilo.kupac} />
+                defaultValue={vozilo.kupacSifra} />
             </Form.Group>
         <hr/>
 

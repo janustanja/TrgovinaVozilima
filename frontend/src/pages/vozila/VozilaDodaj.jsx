@@ -49,12 +49,12 @@ export default function VozilaDodaj(){
         <Form onSubmit={odradiSubmit}>
 
             <Form.Group controlId="vrstaVozila">
-                <Form.Label>Vrstavozila</Form.Label>
+                <Form.Label>Vrsta vozila</Form.Label>
                 <Form.Control type="text" name="vrstaVozila" required />
             </Form.Group>
 
             <Form.Group controlId="dobavljac">
-                <Form.Label>Dobavljac</Form.Label>
+                <Form.Label>Dobavljač</Form.Label>
                 <Form.Control type="text" name="dobavljac" required />
             </Form.Group>
 
@@ -64,13 +64,13 @@ export default function VozilaDodaj(){
             </Form.Group>
 
             <Form.Group controlId="godProizvodnje">
-                <Form.Label>GodProizvodnje</Form.Label>
+                <Form.Label>Godina proizvodnje</Form.Label>
                 <Form.Control type="int" name="godProizvodnje" required />
             </Form.Group>
 
             <Form.Group controlId="prijedeniKm">
-                <Form.Label>PrijedeniKm</Form.Label>
-                <Form.Control type="int" name="prijedeniKM" required />
+                <Form.Label>Prijeđeni kilometri</Form.Label>
+                <Form.Control type="int" name="prijedeniKm" required />
             </Form.Group>
 
 

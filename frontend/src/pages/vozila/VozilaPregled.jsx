@@ -47,11 +47,11 @@ export default function VozilaPregled(){
         <Table striper bordered hover responsive>
             <thead>
                 <tr>
-                    <th>VrstaVozila</th>
-                    <th>Dobavljac</th>
+                    <th>Vrsta vozila</th>
+                    <th>Dobavljač</th>
                     <th>Marka</th>
-                    <th>GodProizvodnje</th>
-                    <th>PrijedeniKm</th>
+                    <th>Godina proizvodnje</th>
+                    <th>Prijeđeni kilometri</th>
                     <th>Cijena</th>
                     <th>Kupac</th>
                     <th>Akcija</th>
