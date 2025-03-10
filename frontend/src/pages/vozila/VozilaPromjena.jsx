@@ -3,27 +3,70 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import VoziloService from "../../services/VoziloService";
 import { useEffect, useState } from "react";
+import VrstaVozilaService from '../../services/VrstaVozilaService';
+import DobavljacService from '../../services/DobavljacService';
+import KupacService from '../../services/KupacService';
 
 
 export default function VozilaPromjena(){
 
     const navigate = useNavigate();
-    const[vozilo, setVozilo]=useState({});
     const routeParams= useParams();
+
+    const[vrsteVozila, setVrsteVozila]=useState([]);
+    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState(0);
+
+    const[dobavljaci, setDobavljaci]=useState([]);
+    const[dobavljacSifra, setDobavljacSifra]=useState(0);
+
+    const[kupci, setKupci]=useState([]);
+    const[kupacSifra, setKupacSifra]=useState(0);
+
+    const[vozilo, setVozilo]=useState({});
+
+    async function dohvatiVrsteVozila(){
+        const odgovor = await VrstaVozilaService.get();
+        setVrsteVozila(odgovor.poruka);
+    }
+
+    async function dohvatiDobavljace(){
+        const odgovor = await DobavljacService.get();
+        setDobavljaci(odgovor.poruka);
+    }
+
+    async function dohvatiKupce(){
+        const odgovor = await KupacService.get();
+        setKupci(odgovor.poruka);
+    }
+
 
     async function dohvatiVozila() 
     {
-        const odgovor = await VoziloService.getBySifra(routeParams.sifra)
-        setVozilo(odgovor)
-        
+        const odgovor = await VoziloService.getBySifra(routeParams.sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka);
+            return;
+        }
+        let vozilo =odgovor.poruka;
+        setVozilo(vozilo);
+        setVrstaVozilaSifra(vozilo.vrstaVozilaSifra);
+        setDobavljacSifra(vozilo.dobavljacSifra);
+        setKupacSifra(vozilo.kupacSifra);
+    
+    }
+    async function dohvatiInicijalnePodatke(){
+        await dohvatiVrsteVozila();
+        await dohvatiDobavljace();
+        await dohvatiKupce();
+        await dohvatiVozila();
     }
 
     useEffect(()=>{
-        dohvatiVozila();
+        dohvatiInicijalnePodatke();
     },[])
 
-    async function promjena(vozilo){
-        const odgovor= await VoziloService.promjena(routeParams.sifra, vozilo);
+    async function promjena(e){
+        const odgovor= await VoziloService.promjena(routeParams.sifra, e);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
@@ -31,8 +74,6 @@ export default function VozilaPromjena(){
         navigate(RouteNames.VOZILO_PREGLED)
 
     }
-
-
 
 
     function odradiSubmit(e){
@@ -63,14 +104,30 @@ export default function VozilaPromjena(){
 
             <Form.Group controlId="vrstaVozila">
                 <Form.Label>Vrsta vozila</Form.Label>
-                <Form.Control type="text" name="vrstaVozila" required
-                defaultValue={vozilo.vrstaVozilaSifra} />
+                <Form.Select
+                value={vrstaVozilaSifra}
+                onChange={(e)=>{setVrstaVozilaSifra(e.target.value)}}
+                >
+                    {vrsteVozila && vrsteVozila.map((s,index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.naziv}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
 
             <Form.Group controlId="dobavljac">
                 <Form.Label>Dobavljač</Form.Label>
-                <Form.Control type="text" name="dobavljac" required 
-                defaultValue={vozilo.dobavljacSifra} />
+                <Form.Select
+                 value={dobavljacSifra}
+                 onChange={(e)=>{setDobavljacSifra(e.target.value)}}
+                 >
+                    {dobavljaci && dobavljaci.map((s,index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.naziv}
+                        </option>
+                    ))}
+                    </Form.Select> 
             </Form.Group>
 
             <Form.Group controlId="marka">
@@ -100,8 +157,16 @@ export default function VozilaPromjena(){
 
             <Form.Group controlId="kupac">
                 <Form.Label>Kupac</Form.Label>
-                <Form.Control type="text" name="kupac" required
-                defaultValue={vozilo.kupacSifra} />
+                <Form.Select
+                value={kupacSifra}
+                onChange={(e)=>{setDobavljacSifra(e.target.value)}}
+                >
+                    {kupci && kupci.map((s,index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.ime}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
         <hr/>
 
