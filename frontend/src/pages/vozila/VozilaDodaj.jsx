@@ -2,14 +2,51 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import VoziloService from "../../services/VoziloService";
+import VrstaVozilaService from "../../services/VrstaVozilaService";
+import DobavljacService from "../../services/DobavljacService";
+import KupacService from "../../services/KupacService";
 
 
 export default function VozilaDodaj(){
 
     const navigate= useNavigate();
 
-    async function dodaj(vozilo){
-        const odgovor= await VoziloService.dodaj(vozilo);
+    const[vrsteVozila, setVrsteVozila]=useState([]);
+    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState(0);
+    
+    const[dobavljaci, setDobavljaci]=useState([]);
+    const[dobavljacSifra, setDobavljacSifra]=useState(0);
+    
+    const[kupci, setKupci]=useState([]);
+    const[kupacSifra, setKupacSifra]=useState(0);
+
+    async function dohvatiVrsteVozila(){
+            const odgovor = await VrstaVozilaService.get();
+            setVrsteVozila(odgovor.poruka);
+            setVrstaVozilaSifra(odgovor.poruka[0].sifra);
+        }
+    
+        async function dohvatiDobavljace(){
+            const odgovor = await DobavljacService.get();
+            setDobavljaci(odgovor.poruka);
+            setDobavljacSifra(odgovor.poruka[0].sifra)
+        }
+    
+        async function dohvatiKupce(){
+            const odgovor = await KupacService.get();
+            setKupci(odgovor.poruka);
+            setKupacSifra(odgovor.poruka[0].sifra)
+        }
+
+        useEffect(()=>{
+            dohvatiVrsteVozila();
+            dohvatiDobavljace();
+            dohvatiKupce();
+          },[]);
+
+
+    async function dodaj(e){
+        const odgovor= await VoziloService.dodaj(e);
         if(odgovor.greska){
             alert(odgovor.poruka)
             return
@@ -19,12 +56,10 @@ export default function VozilaDodaj(){
     }
 
 
-
-
     function odradiSubmit(e){
         e.preventDefault();
 
-        let podaci = new FormData(e.target);
+        const podaci = new FormData(e.target);
 
         dodaj(
             {
@@ -50,12 +85,28 @@ export default function VozilaDodaj(){
 
             <Form.Group controlId="vrstaVozila">
                 <Form.Label>Vrsta vozila</Form.Label>
-                <Form.Control type="text" name="vrstaVozila" required />
+                <Form.Select
+                onChange={(e)=>{setVrstaVozilaSifra(e.target.value)}}
+                >
+                    {vrsteVozila && vrsteVozila.map((s, index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.naziv}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
 
             <Form.Group controlId="dobavljac">
                 <Form.Label>Dobavljač</Form.Label>
-                <Form.Control type="text" name="dobavljac" required />
+                <Form.Select
+                onChange={(e)=>{setDobavljacSifra(e.target.value)}}
+                >
+                    {dobavljaci && dobavljaci.map((s, index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.naziv}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
 
             <Form.Group controlId="marka">
@@ -81,7 +132,15 @@ export default function VozilaDodaj(){
 
             <Form.Group controlId="kupac">
                 <Form.Label>Kupac</Form.Label>
-                <Form.Control type="text" name="kupac" required />
+                <Form.Select
+                 onChange={(e)=>{setKupacSifra(e.target.value)}}
+                 >
+                    {kupci && kupci.map((s, index)=>(
+                        <option key={index} value={s.sifra}>
+                            {s.ime}
+                        </option>
+                    ))}
+                 </Form.Select>
             </Form.Group>
 
         <hr/>
