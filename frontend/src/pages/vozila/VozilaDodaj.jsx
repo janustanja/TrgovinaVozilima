@@ -139,7 +139,7 @@ export default function VozilaDodaj(){
                  >
                     {kupci && kupci.map((s, index)=>(
                         <option key={index} value={s.sifra}>
-                            {s.ime}
+                            {s.ime + ' '+ s.prezime}
                         </option>
                     ))}
                  </Form.Select>

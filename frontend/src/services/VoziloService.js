@@ -27,7 +27,7 @@ async function obrisi(sifra){
     .then((odgovor)=>{
         return {greska:false, poruka: odgovor.data}
     })
-    .catch(()=>{
+    .catch((e)=>{
         return{greska: true, poruka: 'Problem kod brisanja'}
     })
 }

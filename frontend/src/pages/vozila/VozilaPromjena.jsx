@@ -1,7 +1,7 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
-import VoziloService from "../../services/VoziloService";
+import Service from "../../services/VoziloService";
 import { useEffect, useState } from "react";
 import VrstaVozilaService from '../../services/VrstaVozilaService';
 import DobavljacService from '../../services/DobavljacService';
@@ -14,13 +14,13 @@ export default function VozilaPromjena(){
     const routeParams= useParams();
 
     const[vrsteVozila, setVrsteVozila]=useState([]);
-    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState(0);
+    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState();
 
     const[dobavljaci, setDobavljaci]=useState([]);
-    const[dobavljacSifra, setDobavljacSifra]=useState(0);
+    const[dobavljacSifra, setDobavljacSifra]=useState();
 
     const[kupci, setKupci]=useState([]);
-    const[kupacSifra, setKupacSifra]=useState(0);
+    const[kupacSifra, setKupacSifra]=useState();
 
     const[vozilo, setVozilo]=useState({});
 
@@ -84,7 +84,7 @@ export default function VozilaPromjena(){
 
         promjena(
             {
-                vrstaVozilaSifra: vrstaVozilaSifra,
+                vrstaVozila: vrstaVozilaSifra,
                 dobavljacSifra: dobavljacSifra,
                 marka: podaci.get('marka'),
                 godProizvodnje: podaci.get('godProizvodnje'),
@@ -160,11 +160,11 @@ export default function VozilaPromjena(){
                 <Form.Label>Kupac</Form.Label>
                 <Form.Select
                 value={kupacSifra}
-                onChange={(e)=>{setDobavljacSifra(e.target.value)}}
+                onChange={(e)=>{setKupacSifra(e.target.value)}}
                 >
                     {kupci && kupci.map((s,index)=>(
                         <option key={index} value={s.sifra}>
-                            {s.ime}
+                            {s.ime+ ' '+ s.prezime}
                         </option>
                     ))}
                 </Form.Select>
