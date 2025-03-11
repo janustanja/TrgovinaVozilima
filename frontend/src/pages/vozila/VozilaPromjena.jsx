@@ -42,7 +42,7 @@ export default function VozilaPromjena(){
 
     async function dohvatiVozila() 
     {
-        const odgovor = await VoziloService.getBySifra(routeParams.sifra);
+        const odgovor = await Service.getBySifra(routeParams.sifra);
         if(odgovor.greska){
             alert(odgovor.poruka);
             return;
@@ -66,10 +66,10 @@ export default function VozilaPromjena(){
     },[])
 
     async function promjena(e){
-        const odgovor= await VoziloService.promjena(routeParams.sifra, e);
+        const odgovor= await Service.promjena(routeParams.sifra, e);
         if(odgovor.greska){
-            alert(odgovor.poruka)
-            return
+            alert(odgovor.poruka);
+            return;
         }
         navigate(RouteNames.VOZILO_PREGLED)
 
@@ -79,7 +79,7 @@ export default function VozilaPromjena(){
     function odradiSubmit(e){
         e.preventDefault();
 
-        let podaci = new FormData(e.target);
+        const podaci = new FormData(e.target);
 
         promjena(
             {
@@ -102,7 +102,7 @@ export default function VozilaPromjena(){
         Promjena vozila
         <Form onSubmit={odradiSubmit}>
 
-            <Form.Group controlId="vrstaVozila">
+            <Form.Group className='mb-3' controlId="vrstaVozila">
                 <Form.Label>Vrsta vozila</Form.Label>
                 <Form.Select
                 value={vrstaVozilaSifra}
@@ -116,7 +116,7 @@ export default function VozilaPromjena(){
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group controlId="dobavljac">
+            <Form.Group className='mb-3' controlId="dobavljac">
                 <Form.Label>Dobavljač</Form.Label>
                 <Form.Select
                  value={dobavljacSifra}
@@ -155,7 +155,7 @@ export default function VozilaPromjena(){
                 defaultValue={vozilo.cijena} />
             </Form.Group>
 
-            <Form.Group controlId="kupac">
+            <Form.Group className='mb-3' controlId="kupac">
                 <Form.Label>Kupac</Form.Label>
                 <Form.Select
                 value={kupacSifra}

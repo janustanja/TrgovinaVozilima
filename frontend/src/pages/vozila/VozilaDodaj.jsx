@@ -1,7 +1,8 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link, Route, useNavigate } from "react-router-dom";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { RouteNames } from "../../constants";
-import VoziloService from "../../services/VoziloService";
+import Service from "../../services/VoziloService";
 import VrstaVozilaService from "../../services/VrstaVozilaService";
 import DobavljacService from "../../services/DobavljacService";
 import KupacService from "../../services/KupacService";
@@ -46,12 +47,12 @@ export default function VozilaDodaj(){
 
 
     async function dodaj(e){
-        const odgovor= await VoziloService.dodaj(e);
+        const odgovor= await Service.dodaj(e);
         if(odgovor.greska){
-            alert(odgovor.poruka)
-            return
+            alert(odgovor.poruka);
+            return;
         }
-        Navigate(RouteNames.VOZILO_PREGLED)
+        navigate(RouteNames.VOZILO_PREGLED);
 
     }
 
@@ -64,13 +65,13 @@ export default function VozilaDodaj(){
         dodaj(
             {
                 
-                vrstaVozila: podaci.get('vrstaVozila'),
-                dobavljac: podaci.get('dobavljac'),
+                vrstaVozilaSifra: parseInt(vrstaVozilaSifra),
+                dobavljacSifra: parseInt(dobavljacSifra),
                 marka: podaci.get('marka'),
                 godProizvodnje: podaci.get('godProizvodnje'),
                 prijedeniKm: podaci.get('prijedeniKm'),
                 cijena: podaci.get('cijena'),
-                kupac: podaci.get('kupac')
+                kupacSifra: parseInt(kupacSifra)
             }
         );
 
@@ -83,7 +84,7 @@ export default function VozilaDodaj(){
         Dodavanje vozila
         <Form onSubmit={odradiSubmit}>
 
-            <Form.Group controlId="vrstaVozila">
+            <Form.Group className='mb-3' controlId="vrstaVozila">
                 <Form.Label>Vrsta vozila</Form.Label>
                 <Form.Select
                 onChange={(e)=>{setVrstaVozilaSifra(e.target.value)}}
@@ -96,7 +97,7 @@ export default function VozilaDodaj(){
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group controlId="dobavljac">
+            <Form.Group className='mb-3' controlId="dobavljac">
                 <Form.Label>Dobavljač</Form.Label>
                 <Form.Select
                 onChange={(e)=>{setDobavljacSifra(e.target.value)}}
@@ -130,7 +131,7 @@ export default function VozilaDodaj(){
                 <Form.Control type="int" name="cijena" required />
             </Form.Group>
 
-            <Form.Group controlId="kupac">
+            <Form.Group className='mb-3' controlId="kupac">
                 <Form.Label>Kupac</Form.Label>
                 <Form.Select
                  onChange={(e)=>{setKupacSifra(e.target.value)}}
