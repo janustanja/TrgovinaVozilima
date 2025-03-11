@@ -28,6 +28,7 @@ export default function KupciPromjena(){
             alert(odgovor.poruka)
             return
         }
+        console.log(RouteNames.KUPAC_PREGLED)
         navigate(RouteNames.KUPAC_PREGLED)
 
     }

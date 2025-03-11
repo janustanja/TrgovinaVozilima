@@ -14,7 +14,8 @@ export default function DobavljaciDodaj(){
             alert(odgovor.poruka)
             return
         }
-        Navigate(RouteNames.DOBAVLJAC_PREGLED)
+        console.log(RouteNames.DOBAVLJAC_PREGLED)
+        navigate(RouteNames.DOBAVLJAC_PREGLED)
 
     }
 

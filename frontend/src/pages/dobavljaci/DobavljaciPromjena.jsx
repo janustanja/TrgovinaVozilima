@@ -28,7 +28,9 @@ export default function DobavljaciPromjena(){
             alert(odgovor.poruka)
             return
         }
+        console.log(RouteNames.DOBAVLJAC_PREGLED)
         navigate(RouteNames.DOBAVLJAC_PREGLED)
+
 
     }
 

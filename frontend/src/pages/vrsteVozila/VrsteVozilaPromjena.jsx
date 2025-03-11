@@ -28,6 +28,7 @@ export default function VrsteVozilaPromjena(){
             alert(odgovor.poruka)
             return
         }
+        console.log(RouteNames.VRSTAVOZILA_PREGLED)
         navigate(RouteNames.VRSTAVOZILA_PREGLED)
 
     }

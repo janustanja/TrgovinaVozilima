@@ -14,7 +14,8 @@ export default function VrsteVozilaDodaj(){
             alert(odgovor.poruka)
             return
         }
-        Navigate(RouteNames.VRSTAVOZILA_PREGLED)
+        console.log(RouteNames.VRSTAVOZILA_PREGLED)
+        navigate(RouteNames.VRSTAVOZILA_PREGLED)
 
     }
 

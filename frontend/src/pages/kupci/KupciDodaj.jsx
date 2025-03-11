@@ -14,7 +14,8 @@ export default function KupciDodaj(){
             alert(odgovor.poruka)
             return
         }
-        Navigate(RouteNames.KUPAC_PREGLED)
+        console.log(RouteNames.KUPAC_PREGLED)
+        navigate(RouteNames.KUPAC_PREGLED)
 
     }
 
