@@ -17,7 +17,7 @@ async function getBySifra(sifra){
         //console.table(odgovor.data)
         return {greska: false, poruka: odgovor.data}
     })
-    .catch((e)=>{
+    .catch(()=>{
         return {greska:true, poruka: 'Ne postoji vozilo!'}
     })
 }
@@ -34,9 +34,9 @@ async function obrisi(sifra){
 
 async function dodaj(Vozilo){
     return await HttpService.post('/Vozilo', Vozilo)
-    .then(()=>{
+    .then((odgovor)=>{
         return {greska:false, poruka: odgovor.data}})
-    .catch(()=>{
+    .catch((e)=>{
         switch (e.status) {
             case 400:
                 let poruke='';

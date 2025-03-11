@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RouteNames } from "../../constants";
@@ -23,20 +23,20 @@ export default function VozilaDodaj(){
 
     async function dohvatiVrsteVozila(){
             const odgovor = await VrstaVozilaService.get();
-            setVrsteVozila(odgovor.poruka);
-            setVrstaVozilaSifra(odgovor.poruka[0].sifra);
+            setVrsteVozila(odgovor);
+            setVrstaVozilaSifra(odgovor[0].sifra);
         }
     
         async function dohvatiDobavljace(){
             const odgovor = await DobavljacService.get();
-            setDobavljaci(odgovor.poruka);
-            setDobavljacSifra(odgovor.poruka[0].sifra)
+            setDobavljaci(odgovor);
+            setDobavljacSifra(odgovor[0].sifra)
         }
     
         async function dohvatiKupce(){
             const odgovor = await KupacService.get();
-            setKupci(odgovor.poruka);
-            setKupacSifra(odgovor.poruka[0].sifra)
+            setKupci(odgovor);
+            setKupacSifra(odgovor[0].sifra)
         }
 
         useEffect(()=>{
@@ -52,6 +52,7 @@ export default function VozilaDodaj(){
             alert(odgovor.poruka);
             return;
         }
+        console.log(RouteNames.VOZILO_PREGLED)
         navigate(RouteNames.VOZILO_PREGLED);
 
     }
@@ -65,13 +66,13 @@ export default function VozilaDodaj(){
         dodaj(
             {
                 
-                vrstaVozilaSifra: parseInt(vrstaVozilaSifra),
-                dobavljacSifra: parseInt(dobavljacSifra),
+                vrstaVozilaSifra: vrstaVozilaSifra,
+                dobavljacSifra: dobavljacSifra,
                 marka: podaci.get('marka'),
                 godProizvodnje: podaci.get('godProizvodnje'),
                 prijedeniKm: podaci.get('prijedeniKm'),
                 cijena: podaci.get('cijena'),
-                kupacSifra: parseInt(kupacSifra)
+                kupacSifra: kupacSifra
             }
         );
 
