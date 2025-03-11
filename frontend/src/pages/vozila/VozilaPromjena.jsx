@@ -14,13 +14,13 @@ export default function VozilaPromjena(){
     const routeParams= useParams();
 
     const[vrsteVozila, setVrsteVozila]=useState([]);
-    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState();
+    const[vrstaVozilaSifra, setVrstaVozilaSifra]=useState(0);
 
     const[dobavljaci, setDobavljaci]=useState([]);
-    const[dobavljacSifra, setDobavljacSifra]=useState();
+    const[dobavljacSifra, setDobavljacSifra]=useState(0);
 
     const[kupci, setKupci]=useState([]);
-    const[kupacSifra, setKupacSifra]=useState();
+    const[kupacSifra, setKupacSifra]=useState(0);
 
     const[vozilo, setVozilo]=useState({});
 
@@ -84,7 +84,7 @@ export default function VozilaPromjena(){
 
         promjena(
             {
-                vrstaVozila: vrstaVozilaSifra,
+                vrstaVozilaSifra: vrstaVozilaSifra,
                 dobavljacSifra: dobavljacSifra,
                 marka: podaci.get('marka'),
                 godProizvodnje: podaci.get('godProizvodnje'),

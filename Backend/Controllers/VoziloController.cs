@@ -279,58 +279,54 @@ namespace Backend.Controllers
                     return NotFound(new { poruka = "Vozilo ne postoji u bazi" });
                 }
 
-                //VrstaVozila? es;
-                //try
-                //{
-                //    es = _context.VrsteVozila.Find(dto.VrstaVozilaSifra);
-                //}
-                //catch (Exception ex)
-                //{
-                //    return BadRequest(new { poruka = ex.Message });
-                //}
-                //if (es == null)
-                //{
-                //    return NotFound(new { poruka = "Vrsta vozila na vozilu ne postoji u bazi" });
-                //}
-                //Dobavljac? et;
-                //try
-                //{
-                //    et = _context.Dobavljaci.Find(dto.DobavljacSifra);
-                //}
-                //catch (Exception ex)
-                //{
-                //    return BadRequest(new { poruka = ex.Message });
-                //}
-                //if (et == null)
-                //{
-                //    return NotFound(new { poruka = "Dobavljač ne postoji u bazi" });
-                //}
+                VrstaVozila? es;
+                try
+                {
+                    es = _context.VrsteVozila.Find(dto.VrstaVozilaSifra);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (es == null)
+                {
+                    return NotFound(new { poruka = "Vrsta vozila na vozilu ne postoji u bazi" });
+                }
+                Dobavljac? et;
+                try
+                {
+                    et = _context.Dobavljaci.Find(dto.DobavljacSifra);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (et == null)
+                {
+                    return NotFound(new { poruka = "Dobavljač ne postoji u bazi" });
+                }
 
-                //Kupac? em;
-                //try
-                //{
-                //    em = _context.Kupci.Find(dto.KupacSifra);
-                //}
-                //catch (Exception ex)
-                //{
-                //    return BadRequest(new { poruka = ex.Message });
-                //}
-                //if (em == null)
-                //{
-                //    return NotFound(new { poruka = "Kupac ne postoji u bazi" });
-                //}
-
-                //e = _mapper.Map(dto, e);
-                //e.VrstaVozila = es;
-                //e.Dobavljac = et;
-                //e.Kupac = em;
-                //_context.Vozila.Update(e);
-                //_context.SaveChanges();
+                Kupac? em;
+                try
+                {
+                    em = _context.Kupci.Find(dto.KupacSifra);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (em == null)
+                {
+                    return NotFound(new { poruka = "Kupac ne postoji u bazi" });
+                }
 
                 e = _mapper.Map(dto, e);
-
+                e.VrstaVozila = es;
+                e.Dobavljac = et;
+                e.Kupac = em;
                 _context.Vozila.Update(e);
                 _context.SaveChanges();
+
 
                 return Ok(new { poruka = "Uspješno promjenjeno" });
             }
