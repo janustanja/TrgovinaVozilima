@@ -53,7 +53,7 @@ async function dodaj(Vozilo){
 
 async function promjena(sifra,Vozilo){
     return await HttpService.put('/Vozilo/'+sifra, Vozilo)
-    .then(()=>{
+    .then((odgovor)=>{
         return {greska:false, poruka: odgovor.data}
     })
     .catch((e)=>{

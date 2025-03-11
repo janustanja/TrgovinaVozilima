@@ -26,17 +26,17 @@ export default function VozilaPromjena(){
 
     async function dohvatiVrsteVozila(){
         const odgovor = await VrstaVozilaService.get();
-        setVrsteVozila(odgovor.poruka);
+        setVrsteVozila(odgovor);
     }
 
     async function dohvatiDobavljace(){
         const odgovor = await DobavljacService.get();
-        setDobavljaci(odgovor.poruka);
+        setDobavljaci(odgovor);
     }
 
     async function dohvatiKupce(){
         const odgovor = await KupacService.get();
-        setKupci(odgovor.poruka);
+        setKupci(odgovor);
     }
 
 
@@ -71,6 +71,7 @@ export default function VozilaPromjena(){
             alert(odgovor.poruka);
             return;
         }
+        console.log(RouteNames.VOZILO_PREGLED)
         navigate(RouteNames.VOZILO_PREGLED)
 
     }
@@ -83,13 +84,13 @@ export default function VozilaPromjena(){
 
         promjena(
             {
-                vrstaVozila: podaci.get('vrstaVozila'),
-                dobavljac: podaci.get('dobavljac'),
+                vrstaVozilaSifra: vrstaVozilaSifra,
+                dobavljacSifra: dobavljacSifra,
                 marka: podaci.get('marka'),
                 godProizvodnje: podaci.get('godProizvodnje'),
                 prijedeniKm: podaci.get('prijedeniKm'),
                 cijena: podaci.get('cijena'),
-                kupac: podaci.get('kupac')
+                kupacSifra: kupacSifra
             }
         );
 
